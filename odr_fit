@@ -1,0 +1,38 @@
+from scipy import odr
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats
+
+x = np.linspace(0, 10, 50)
+delta_x = 0.1
+y = 2*x + 6 + 0.5*np.random.normal(size=len(x))
+delta_y = 0.7*np.random.normal(size=len(x))
+
+plt.scatter(x, y)
+plt.show()
+
+
+def f(B, x):
+    return B[0]*x + B[1]
+
+linear = odr.Model(f)
+
+mydata = odr.RealData(x, y, sx=delta_x**2, sy=delta_y**2)
+
+myodr = odr.ODR(data =mydata, model=linear, beta0=[1., 4.])
+
+myoutput = myodr.run()
+
+myoutput.pprint()
+
+params = myoutput.beta
+
+
+
+chi2 = stats.chisquare(y, f(params, x))
+print("chi2: " + str(chi2))
+
+
+plt.plot(x, f(params, x), c='r')
+plt.errorbar(x,y,delta_y,delta_x, '.')
+plt.show()
