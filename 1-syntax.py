@@ -1,14 +1,16 @@
 print("Hello World!")
 
-# no explicit variable types
-a=2
-b=3
+# no explicit variable types, only internal
+a = 2
+b = 3.14
 name = "Ruben"
 
-print("name type: {}".format(type(name)))
-print("Hello {}!\n".format(name))
+print("Hello ", name)
+print("name type: ", type(name))
+print("pi = {}".format(b))
 
 # identation! 
+print("\n Sequence control")
 if a+b == 0:
     print("a+b is zero value")
 elif a+b > 0:
@@ -16,11 +18,12 @@ elif a+b > 0:
 else:
     print("a+b is negative value")
     
-    
+# lists, similar to arrays in other languages
 a_list = [a, b, 2, 7]
 print("\n a_list:")
 print(a_list)
 print(a_list[1:3]) # without number is same as first/last index, check negative values
+print("a_list size: ", len(a_list))
 
 print("\n Using while:")
 i=0
