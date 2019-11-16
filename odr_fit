@@ -16,23 +16,19 @@ def f(B, x):
     return B[0]*x + B[1]
 
 linear = odr.Model(f)
+mydata = odr.Data(x, y, wd=1./delta_x, we=1./delta_y)
 
-mydata = odr.RealData(x, y, sx=delta_x**2, sy=delta_y**2)
-
-myodr = odr.ODR(data =mydata, model=linear, beta0=[1., 4.])
+myodr = odr.ODR(data=mydata, model=linear, beta0=[3., 8.])
 
 myoutput = myodr.run()
-
 myoutput.pprint()
 
+
 params = myoutput.beta
-
-
-
-chi2 = stats.chisquare(y, f(params, x))
-print("chi2: " + str(chi2))
-
-
 plt.plot(x, f(params, x), c='r')
 plt.errorbar(x,y,delta_y,delta_x, '.')
 plt.show()
+
+chi2, p = stats.chisquare(y, f(params, x))
+print("\n chi2: " + str(chi2))
+print("\n chi2/(N-v): " + str(chi2/(len(y)-len(params))))
