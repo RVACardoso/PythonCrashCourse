@@ -1,14 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
-# %matplotlib auto
-# %matplotlib inline
+
 plt.rc('lines', linewidth=4)
+plt.rc('lines', ls="-") # other options --, -. and :
 
     # Plot
 
-x = np.arange(-5,5,0.1)
+x = np.arange(-5,5,0.1)  # we always need the initial values where the function will be computed
 y = np.sin(x)
-plt.plot(x,y,label='sin')
+plt.plot(x,y,label='sin')  # x and y must have same dimension
 plt.title("Plot sin(x)")
 plt.show()
 
@@ -21,7 +21,7 @@ plt.scatter(x, y1, label='Several labels!', c='r')
 plt.plot(x, y2, label='Yes, you can add labels!')
 plt.xlabel("X axis")
 plt.ylabel("Y axis")
-plt.legend()
+plt.legend()  # required to enable labels
 plt.title("Scatter points")
 plt.show()
 
