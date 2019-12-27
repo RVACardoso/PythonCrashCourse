@@ -9,7 +9,7 @@ y = 2*x + 6 + 0.5*np.random.normal(size=len(x))
 delta_y = 0.7*np.random.normal(size=len(x))
 
 plt.scatter(x, y)
-plt.show()
+plt.show() 
 
 
 def f(B, x):
